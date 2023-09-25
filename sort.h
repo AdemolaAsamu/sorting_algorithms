@@ -29,10 +29,14 @@ void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 int list_size(const listint_t *list);
+void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
+void swap(int *a, int *b);
+int lomuto_partition(int *array, int low, int high);
+void quick_sort_helper(int *array, int low, int high);
 
 
 /*SORT_H Ending*/
