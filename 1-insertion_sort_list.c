@@ -7,7 +7,7 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *status; *buffer;
+	listint_t *status, *buf;
 
 	if (!list || !(*list) || !((*list)->next) || list_size(*list) < 2)
 		return;
@@ -15,23 +15,43 @@ void insertion_sort_list(listint_t **list)
 	status = (*list)->next;
 	while (status != NULL)
 	{
-		buffer = status->prev;
-		while (buffer != NULL && buffer->n > status->n)
+		buf = status->prev;
+		while (buf != NULL && buf->n > status->n)
 		{
-			if (buffer->prev)
-				buffer->prev->next = status;
+			if (buf->prev)
+				buf->prev->next = status;
 			if (status->next)
-				status->next->prev = buffer;
-			buffer->next = status->next;
-			status->prev = buffer->prev;
-			status->next = buffer;
-			buffer->prev = status;
+				status->next->prev = buf;
+			buf->next = status->next;
+			status->prev = buf->prev;
+			status->next = buf;
+			buf->prev = status;
 
 			if (status->prev == NULL)
 				*list = status;
-			buffer = status->prev;
+			buf = status->prev;
 			print_list(*list);
 		}
 		status = status->next;
 	}
+}
+
+/**
+ * list_size - presents the size of a list
+ *
+ * @list - pointer to the list to be counted
+ * Return: The list size
+ */
+
+int list_size(const listint_t *list)
+{
+	int k;
+
+	k = 0;
+	while(list)
+	{
+		++k;
+		list = list->next;
+	}
+	return (k);
 }
